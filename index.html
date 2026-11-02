@@ -1,555 +1,415 @@
-Вот готовый одностраничный сайт в тёмно-зелёных тонах. Он оформлен как внутренний портал РП-отдела Yufu.Su: шапка, боковая навигация, блоки с регламентами и интерактивные аккордеоны.
 ```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yufu RP · Регламент обзвонов</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yufu.Su · RP Регламент</title>
+<style>
+  :root{
+    --bg:#07140f;
+    --bg-card:#0d211a;
+    --bg-elev:#113026;
+    --border:#1d4a38;
+    --border-soft:#173a2c;
+    --text:#d8ece2;
+    --text-dim:#8fb3a3;
+    --accent:#3fbf8a;
+    --accent-soft:#a8e8cc;
+    --warn:#d9b64a;
+    --danger:#c96a4d;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    line-height:1.6;
+    font-size:15px;
+    min-height:100vh;
+  }
+  ::selection{background:var(--accent);color:#04120c}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:6px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--accent)}
 
-    body {
-      background: #0b1a14;
-      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      color: #e2f0e7;
-      line-height: 1.5;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      padding: 1.5rem 1rem;
-    }
+  .wrap{max-width:1180px;margin:0 auto;padding:24px 20px 80px}
 
-    .page {
-      max-width: 1400px;
-      margin: 0 auto;
-      width: 100%;
-      flex: 1;
-    }
+  /* ---------- Шапка ---------- */
+  .topbar{
+    display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;
+    gap:16px;padding:18px 24px;margin-bottom:28px;
+    background:linear-gradient(135deg,#0f2c21,#0a1f17);
+    border:1px solid var(--border);border-radius:var(--radius);
+  }
+  .brand{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .brand-mark{
+    width:44px;height:44px;flex:0 0 44px;border-radius:12px;
+    display:grid;place-items:center;font-size:22px;
+    background:radial-gradient(circle at 30% 30%,#1e5e46,#0b2419);
+    border:1px solid var(--accent);
+    box-shadow:0 0 18px -6px var(--accent);
+  }
+  .brand-title{font-size:19px;font-weight:700;letter-spacing:-.01em}
+  .brand-sub{font-size:12.5px;color:var(--text-dim);margin-top:2px}
+  .pill{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600;
+    background:#123528;border:1px solid var(--border);color:var(--accent-soft);
+    white-space:nowrap;
+  }
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
 
-    /* Шапка */
-    .header {
-      background: linear-gradient(135deg, #133e2e 0%, #0c2c20 100%);
-      border: 1px solid #1e5e45;
-      border-radius: 2rem;
-      padding: 1.8rem 2.2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), inset 0 1px 3px rgba(140, 255, 200, 0.08);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-    }
+  /* ---------- Заголовки секций ---------- */
+  .sec-head{
+    display:flex;align-items:center;gap:12px;margin:34px 0 16px;
+    font-size:17px;font-weight:700;color:var(--accent-soft);
+    letter-spacing:-.01em;
+  }
+  .sec-head::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+  .sec-num{
+    width:26px;height:26px;flex:0 0 26px;display:grid;place-items:center;
+    border-radius:8px;font-size:13px;background:var(--bg-elev);
+    border:1px solid var(--border);color:var(--accent);
+  }
 
-    .header h1 {
-      font-weight: 600;
-      font-size: 2rem;
-      letter-spacing: -0.02em;
-      color: #bbf0d6;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
+  /* ---------- Сетка карточек ---------- */
+  .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+  .card{
+    background:var(--bg-card);border:1px solid var(--border);
+    border-radius:var(--radius);padding:20px 22px;
+    transition:border-color .18s,transform .18s;
+  }
+  .card:hover{border-color:#2a6b52}
+  .card-title{
+    display:flex;align-items:center;gap:10px;
+    font-size:15.5px;font-weight:700;color:var(--accent-soft);
+    padding-bottom:12px;margin-bottom:14px;
+    border-bottom:1px solid var(--border-soft);
+  }
+  .card-title .ico{font-size:18px;line-height:1}
 
-    .header h1 span {
-      background: #1a4d39;
-      padding: 0.2rem 1rem;
-      border-radius: 40px;
-      font-size: 1rem;
-      font-weight: 500;
-      color: #d4f7e4;
-      border: 1px solid #2d7658;
-      box-shadow: inset 0 1px 2px #00000030;
-    }
+  /* ---------- Чеклист ---------- */
+  .check{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .check li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#c8e0d4}
+  .check li .n{
+    flex:0 0 20px;height:20px;display:grid;place-items:center;
+    border-radius:6px;font-size:11px;font-weight:700;margin-top:1px;
+    background:#123528;border:1px solid var(--border);color:var(--accent);
+  }
+  .check li.danger .n{background:#2c1a13;border-color:#5a3324;color:#e3a184}
+  .check li.danger{color:#ecc3b2}
+  .check li .hint{color:var(--text-dim);font-size:12.5px}
 
-    .header-meta {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.9rem;
-      color: #9fcfb8;
-      background: #0e2b1f;
-      padding: 0.6rem 1.4rem;
-      border-radius: 3rem;
-      border: 1px solid #266a4e;
-    }
+  /* ---------- Аккордеон ---------- */
+  .acc{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px}
+  .acc + .acc{margin-top:0}
+  .acc summary{
+    list-style:none;cursor:pointer;padding:16px 22px;
+    display:flex;justify-content:space-between;align-items:center;gap:14px;
+    font-weight:700;font-size:15px;color:var(--accent-soft);
+    background:var(--bg-elev);transition:background .15s;
+  }
+  .acc summary::-webkit-details-marker{display:none}
+  .acc summary:hover{background:#163a2c}
+  .acc summary .chev{
+    flex:0 0 auto;font-size:13px;color:var(--accent);
+    transition:transform .2s;display:inline-block;
+  }
+  .acc[open] summary .chev{transform:rotate(90deg)}
+  .acc-body{padding:20px 22px;border-top:1px solid var(--border-soft);font-size:14px}
+  .acc-body p{margin-bottom:11px;color:#cbe3d7}
+  .acc-body p:last-child{margin-bottom:0}
 
-    /* Сетка контента */
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.8rem;
-      margin-bottom: 2rem;
-    }
+  h4{
+    font-size:14px;font-weight:700;color:var(--accent-soft);
+    margin:20px 0 10px;padding-left:10px;
+    border-left:3px solid var(--accent);line-height:1.3;
+  }
+  h4:first-child{margin-top:0}
 
-    @media (max-width: 900px) {
-      .grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-    }
+  .acc-body ul,.acc-body ol{margin:0 0 12px 0;padding-left:22px}
+  .acc-body li{margin-bottom:7px;color:#cbe3d7}
+  .acc-body li:last-child{margin-bottom:0}
+  .acc-body strong{color:#eafff4}
 
-    /* Карточки */
-    .card {
-      background: #0f261e;
-      border: 1px solid #1e5e45;
-      border-radius: 2rem;
-      padding: 1.8rem 2rem;
-      box-shadow: 0 10px 25px -8px #00000080, inset 0 1px 2px #3d9b75;
-      transition: border 0.2s;
-    }
+  /* ---------- Блоки-шаблоны ---------- */
+  .tpl-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:14px}
+  .tpl{
+    background:var(--bg-elev);border:1px solid var(--border);
+    border-radius:11px;padding:16px 18px;font-size:13.5px;
+  }
+  .tpl-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .tpl-head b{color:var(--accent-soft);font-size:13.5px}
+  .tag{
+    font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;
+    padding:2px 8px;border-radius:6px;background:#0a1c15;
+    border:1px solid var(--border);color:var(--accent-soft);white-space:nowrap;
+  }
+  .tpl ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;color:#bcd8c9}
+  .tpl ul li{padding:0;margin:0}
 
-    .card:hover {
-      border-color: #2b8b64;
-    }
+  /* ---------- Предупреждение ---------- */
+  .warnbox{
+    margin-top:28px;padding:16px 20px;border-radius:var(--radius);
+    background:#1a2410;border:1px solid #4c5c22;
+    border-left:4px solid var(--warn);color:#e9efcf;font-size:13.5px;
+  }
+  .warnbox strong{color:#ffe9a7}
 
-    .card-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #c3f5de;
-      margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      border-bottom: 2px solid #1f5a43;
-      padding-bottom: 0.7rem;
-      letter-spacing: -0.01em;
-    }
+  /* ---------- Футер ---------- */
+  .foot{
+    margin-top:44px;padding-top:22px;border-top:1px solid var(--border-soft);
+    display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
+    font-size:12.5px;color:var(--text-dim);
+  }
 
-    .card-title i {
-      font-size: 1.8rem;
-      line-height: 1;
-      filter: drop-shadow(0 2px 3px #00000050);
-    }
-
-    .regul-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .regul-list li {
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-      padding: 0.4rem 0.1rem;
-      border-bottom: 1px dashed #1d523e;
-      font-size: 0.98rem;
-    }
-
-    .regul-list li:last-child {
-      border-bottom: none;
-    }
-
-    .badge {
-      background: #184d37;
-      color: #c6f5df;
-      border-radius: 40px;
-      padding: 0.15rem 0.75rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-      border: 1px solid #2e7a5b;
-      box-shadow: inset 0 1px 0 #60c49a20;
-    }
-
-    .badge-warn {
-      background: #2d3d1f;
-      color: #e3f5b0;
-      border-color: #6d8f3d;
-    }
-
-    .badge-deny {
-      background: #3a2722;
-      color: #ffc9b0;
-      border-color: #a1573a;
-    }
-
-    /* Аккордеон / секции с правилами */
-    .section {
-      background: #0d221a;
-      border: 1px solid #1d5c44;
-      border-radius: 1.8rem;
-      margin-bottom: 1.5rem;
-      overflow: hidden;
-      box-shadow: 0 6px 18px #00000040;
-    }
-
-    .section-header {
-      padding: 1.2rem 2rem;
-      background: #123529;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: #c8f7e0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      user-select: none;
-      border-bottom: 1px solid #1e5e45;
-      transition: background 0.15s;
-    }
-
-    .section-header:hover {
-      background: #174a36;
-    }
-
-    .section-header .arrow {
-      font-size: 1.6rem;
-      line-height: 1;
-      color: #6abf93;
-      transition: transform 0.2s;
-    }
-
-    .section.open .section-header .arrow {
-      transform: rotate(90deg);
-    }
-
-    .section-body {
-      display: none;
-      padding: 1.6rem 2rem 2rem;
-      background: #0b1f18;
-      border-top: 1px solid #1f5a43;
-      font-size: 0.98rem;
-    }
-
-    .section.open .section-body {
-      display: block;
-    }
-
-    .section-body p {
-      margin-bottom: 0.9rem;
-      color: #d4ece0;
-    }
-
-    .section-body h4 {
-      color: #bbf0d6;
-      font-size: 1.15rem;
-      margin: 1.2rem 0 0.7rem;
-      font-weight: 600;
-      border-left: 4px solid #389e72;
-      padding-left: 0.9rem;
-    }
-
-    .section-body ul, .section-body ol {
-      margin-left: 1.8rem;
-      margin-bottom: 1rem;
-      color: #d0e9dd;
-    }
-
-    .section-body li {
-      margin-bottom: 0.45rem;
-    }
-
-    .section-body .highlight {
-      background: #1a4231;
-      color: #dfffea;
-      padding: 0.15rem 0.5rem;
-      border-radius: 12px;
-      font-weight: 500;
-      border: 1px solid #2f7a5a;
-    }
-
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #2b6e52, transparent);
-      margin: 1.5rem 0;
-    }
-
-    /* Требования / предупреждения */
-    .warning-box {
-      background: #1b2e1a;
-      border-left: 8px solid #b9a43b;
-      padding: 1rem 1.5rem;
-      border-radius: 1.2rem;
-      margin: 1.2rem 0;
-      color: #f1f7d6;
-      font-size: 0.95rem;
-      border: 1px solid #5e6b2e;
-      box-shadow: inset 0 0 15px #00000030;
-    }
-
-    .warning-box strong {
-      color: #ffe9a7;
-    }
-
-    /* Сетка для шаблонов */
-    .template-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .template-item {
-      background: #173f2e;
-      padding: 1rem 1.4rem;
-      border-radius: 1.4rem;
-      border: 1px solid #2a7657;
-      font-size: 0.95rem;
-      box-shadow: inset 0 1px 4px #8bc9a620;
-    }
-
-    .template-item .code {
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      background: #0b1f16;
-      padding: 0.2rem 0.6rem;
-      border-radius: 12px;
-      color: #b4f0d2;
-      border: 1px solid #2b7657;
-      font-size: 0.85rem;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 2.5rem;
-      color: #6b9f85;
-      font-size: 0.9rem;
-      border-top: 1px solid #1d4e39;
-      padding-top: 2rem;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    /* Кастомный скролл */
-    ::-webkit-scrollbar {
-      width: 12px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #0b1f16;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #266b4e;
-      border-radius: 8px;
-      border: 2px solid #0b1f16;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #348a66;
-    }
-
-    /* Мелкие утилиты */
-    .text-muted {
-      color: #93bfaa;
-    }
-
-    .flex-between {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .mt-1 { margin-top: 1rem; }
-    .mt-2 { margin-top: 1.5rem; }
-    .mb-1 { margin-bottom: 0.8rem; }
-  </style>
+  /* ---------- Мобилки ---------- */
+  @media(max-width:560px){
+    .wrap{padding:16px 14px 60px}
+    .topbar{padding:14px 16px;border-radius:12px}
+    .brand-title{font-size:16px}
+    .brand-sub{font-size:11.5px}
+    .acc summary{padding:14px 16px;font-size:14px}
+    .acc-body{padding:16px}
+    .card{padding:16px}
+    .tpl-grid{grid-template-columns:1fr}
+  }
+</style>
 </head>
 <body>
-<div class="page">
+<div class="wrap">
 
-  <!-- Шапка -->
-  <header class="header">
-    <h1>
-      <span>⛩️</span> Yufu.Su · RP отдел
-      <span>Demon Slayer · Server 2</span>
-    </h1>
-    <div class="header-meta">
-      <span>📋 Регламент обзвонов</span>
-      <span>🟢 активен</span>
+  <!-- ============ ШАПКА ============ -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">⛩️</div>
+      <div>
+        <div class="brand-title">Yufu.Su · RP отдел</div>
+        <div class="brand-sub">Demon Slayer · Server 2 · yufu.us</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <span class="pill"><span class="dot"></span> регламент активен</span>
+      <span class="pill">обзвоны · лорники · лидеры</span>
     </div>
   </header>
 
-  <!-- Две колонки: лорники и лидеры -->
+  <!-- ============ СЕКЦИЯ 1: ЧЕКЛИСТЫ ============ -->
+  <div class="sec-head"><span class="sec-num">1</span> Проверка заявок</div>
+
   <div class="grid">
     <!-- Лорники -->
     <div class="card">
-      <div class="card-title">
-        <i>🗡️</i> Одобрение заявок лорников
-      </div>
-      <ul class="regul-list">
-        <li><span class="badge">1</span> Проверить на наличие чёрного списка лорников</li>
-        <li><span class="badge">2</span> Проверка на наличие чёрного списка проекта</li>
-        <li><span class="badge">3</span> Стабильный онлайн за последние 15+ дней <span class="text-muted">(только 2-й сервер)</span></li>
-        <li><span class="badge">4</span> Проверить 2-й пункт (возраст) на соответствие требований</li>
-        <li><span class="badge">5</span> Проверить 7-й пункт на копипаст и количество содержания</li>
-        <li><span class="badge badge-warn">6</span> Если стоит на лорнике в одной из фракций — <strong>отказ</strong> <span class="text-muted">(искл. донат-лорники)</span></li>
+      <div class="card-title"><span class="ico">🗡️</span> Одобрение заявок лорников</div>
+      <ul class="check">
+        <li><span class="n">1</span><div>Проверить на наличие чёрного списка лорников</div></li>
+        <li><span class="n">2</span><div>Проверка на наличие чёрного списка проекта</div></li>
+        <li><span class="n">3</span><div>Стабильный онлайн за последние 15+ дней <span class="hint">(только 2-й сервер)</span></div></li>
+        <li><span class="n">4</span><div>Проверить 2-й пункт (возраст) на соответствие требований</div></li>
+        <li><span class="n">5</span><div>Проверить 7-й пункт на копипаст и количество содержания</div></li>
+        <li class="danger"><span class="n">6</span><div>Стоит на лорнике в одной из фракций — <strong>отказ</strong> <span class="hint">(искл. донат-лорники)</span></div></li>
       </ul>
     </div>
 
     <!-- Лидеры -->
     <div class="card">
-      <div class="card-title">
-        <i>👑</i> Одобрение заявок лидеров
-      </div>
-      <ul class="regul-list">
-        <li><span class="badge">1</span> Проверить на наличие чёрного списка лидеров и лорников</li>
-        <li><span class="badge">2</span> Проверить на наличие чёрного списка проекта</li>
-        <li><span class="badge">3</span> Стабильный онлайн за последние 15+ дней <span class="text-muted">(только 2-й сервер)</span></li>
-        <li><span class="badge">4</span> Проверить 2-й пункт (возраст) на соответствие требований</li>
-        <li><span class="badge">5</span> Проверить 7-й пункт на копипаст и количество содержания</li>
-        <li><span class="badge badge-warn">6</span> Стоит на лорнике в одной из фракций — <strong>отказ</strong> <span class="text-muted">(кроме донат-лорников)</span></li>
+      <div class="card-title"><span class="ico">👑</span> Одобрение заявок лидеров</div>
+      <ul class="check">
+        <li><span class="n">1</span><div>Проверить на наличие чёрного списка лидеров и лорников</div></li>
+        <li><span class="n">2</span><div>Проверить на наличие чёрного списка проекта</div></li>
+        <li><span class="n">3</span><div>Стабильный онлайн за последние 15+ дней <span class="hint">(только 2-й сервер)</span></div></li>
+        <li><span class="n">4</span><div>Проверить 2-й пункт (возраст) на соответствие требований</div></li>
+        <li><span class="n">5</span><div>Проверить 7-й пункт на копипаст и количество содержания</div></li>
+        <li class="danger"><span class="n">6</span><div>Стоит на лорнике в одной из фракций — <strong>отказ</strong> <span class="hint">(кроме донат-лорников)</span></div></li>
       </ul>
     </div>
   </div>
 
-  <!-- Основной регламент обзвона (аккордеон) -->
-  <div class="section open" id="section-main">
-    <div class="section-header" onclick="toggleSection('section-main')">
-      <span>📜 Регламент проведения обзвонов · Demon Slayer server 2 yufu.us</span>
-      <span class="arrow">▸</span>
-    </div>
-    <div class="section-body">
-      <p><strong>Обзвон</strong> — мероприятие, устраиваемое РП персоналом с целью отбора кандидата на должность лорного персонажа или лидера фракции.</p>
+  <!-- ============ СЕКЦИЯ 2: РЕГЛАМЕНТ ОБЗВОНОВ ============ -->
+  <div class="sec-head"><span class="sec-num">2</span> Регламент проведения обзвонов</div>
 
-      <h4>Общее положение</h4>
+  <!-- Общее положение -->
+  <details class="acc" open>
+    <summary>
+      <span>📜 Общее положение</span>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="acc-body">
+      <p><strong>Обзвон</strong> — мероприятие, устраиваемое РП персоналом с целью отбора кандидата на должность лорного персонажа или лидера фракции.</p>
       <ul>
         <li>Устраивать мероприятие разрешено при прохождении 72 ч. после объявления.</li>
-        <li>Все правила являются действующими, все люди, принимающие участие, обязаны их соблюдать.</li>
+        <li>Все правила действующие, все участники обязаны их соблюдать.</li>
         <li>Помимо РП персонала на обзвонах может присутствовать любой член высшей администрации: Заместитель куратора и выше.</li>
-        <li>Если обзвон проходит РП куратор и выше, на обзвоне обязан присутствовать член высшей администрации выше по должности кандидата, и должен присутствовать весь обзвон. Если обзвон проходит куратор сервера — на обзвоне должен присутствовать один член команды проекта.</li>
-        <li>На обзвон со стороны администрации допускаются только члены РП персонала или члены высшей администрации сервера: Заместитель куратора и выше.</li>
+        <li>Если обзвон проходит РП куратор и выше — обязан присутствовать член высшей администрации выше по должности кандидата, весь обзвон. Если куратор сервера — один член команды проекта.</li>
+        <li>На обзвон со стороны администрации допускаются только члены РП персонала или высшей администрации: Заместитель куратора и выше.</li>
         <li>Обзвон проходит в соответствии с правилами Discord yufu.us.</li>
         <li>Посторонним лицам запрещено присутствовать на обзвоне.</li>
-        <li>Голоса о наборе лорника учитываются только у членов РП персонала, компетентных в сфере набора лорников, заместителей куратора, куратора (продолжительный опыт работы в РП персонале) и команды проекта.</li>
-        <li>Вы обладаете правом выдать кандидату сверхвремя для: прохождения обзвона на час позже (60 минут максимум), прохождения обзвона при тяжких условиях. Другие причины обговариваются с куратором и РП куратором.</li>
+        <li>Голоса о наборе лорника учитываются только у членов РП персонала, компетентных в сфере набора лорников, заместителей куратора, куратора и команды проекта.</li>
+        <li>Вы вправе выдать кандидату сверхвремя: на час позже (60 мин максимум), при тяжких условиях. Другие причины — с куратором и РП куратором.</li>
       </ul>
+    </div>
+  </details>
 
-      <h4>Требования со стороны РП персонала</h4>
+  <!-- Требования РП персонала -->
+  <details class="acc">
+    <summary>
+      <span>🧑‍⚖️ Требования со стороны РП персонала</span>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="acc-body">
       <ul>
-        <li>РП персонал, принимающий участие в обзвоне, обязан создать войс-канал для проведения обзвона за 10–5 минут до его начала и ожидать игроков, предварительно пинганув их в ветке заявок и оповестив о скором начале обзвона.</li>
-        <li>Вопросы и ключи к ним (по желанию РП персонала) должны быть готовы за 10 минут до обзвона или на самом обзвоне; дедлайн — 10 минут с момента начала обзвона, указанным членом РП персонала в заявке.</li>
-        <li>Во время всего обзвона должна вестись запись экрана, дабы записать, как член РП персонала задаёт вопрос, а кандидат на него отвечает. Запись должна иметь чёткий и качественный звук.</li>
-        <li>На все ответы обязаны быть выписаны +/– в лорной части, и текстом выписана организационная часть.</li>
-        <li>Как только кандидат будет перемещён в войс, член РП персонала, ответственный за устную часть, обязан поприветствовать кандидата и объяснить правила обзвона.</li>
-        <li>Член РП персонала, ответственный за устную часть, должен рассказать кандидату: норму онлайна в день, прайм-тайм, если луна или столп (по желанию кандидата), получить согласие кандидата на все эти правила, попросить включить демонстрацию экрана и приступить к лорным вопросам.</li>
-        <li>РП состав имеет право исключить кандидата за нарушения правил обзвона, которые устанавливает РП персонал, или нарушения правил Discord (банворды, многочисленная нецензурная лексика, запрещённый контент, неадекватное и неуважительное поведение и отношение к РП персоналу на обзвоне).</li>
-        <li>РП персонал обязан обзвонить каждого кандидата и задать ему все вопросы, даже если уже видно, что кандидат не проходит по лору и организационной части.</li>
+        <li>Создать войс-канал за 10–5 минут до начала, пингануть игроков в ветке заявок и оповестить о скором начале.</li>
+        <li>Вопросы и ключи (по желанию) готовы за 10 минут до обзвона или на самом обзвоне; дедлайн — 10 минут с начала.</li>
+        <li>Во время всего обзвона ведётся запись экрана с чётким и качественным звуком.</li>
+        <li>На все ответы выписываются +/– в лорной части, текстом — организационная часть.</li>
+        <li>После перемещения кандидата в войс — поприветствовать и объяснить правила обзвона.</li>
+        <li>Рассказать кандидату: норму онлайна в день, прайм-тайм (если луна или столп — по желанию кандидата), получить согласие, попросить демонстрацию экрана и приступить к лорным вопросам.</li>
+        <li>РП состав вправе исключить кандидата за нарушение правил обзвона или Discord (банворды, нецензурная лексика, запрещённый контент, неадекватное/неуважительное поведение).</li>
+        <li>Обзвонить каждого кандидата и задать все вопросы, даже если уже видно, что он не проходит.</li>
         <li>Вопросы должны быть корректны и понятны как кандидату, так и всем членам РП персонала.</li>
         <li>Устраивать мероприятие разрешено при прохождении 72 ч. после объявления.</li>
-        <li>Запрещено злоупотребление численными вопросами по типу «Сколько лет?», «Сколько весит», «Сколько было пальцев» и т.д.</li>
-        <li>РП персоналу строго-настрого запрещено вести себя неадекватно на обзвоне, употреблять нецензурную лексику, грубо общаться с кандидатами, менять конструкцию вопроса (первому человеку задал как написано, второму — как удобнее), чтобы смысл вопроса не менялся от его произношения.</li>
-        <li>Запрещено подробно разъяснять кандидату вопрос, все вопросы корректны и понятны. Если будет вопрос по типу «Объясните, что это значит» и т.д., говорите: «Как поняли вопрос, так на него и отвечайте».</li>
-        <li>Как проходит обзвон: сбор РП персонала, ответственных за обзвон, сбор кандидатов, проведение лорной части кандидату, проведение организационной части кандидату, следующий кандидат и так пока не кончатся все, просмотр всех +/– и ответов на орг. часть, вынесение решения.</li>
-        <li>Если РП персоналу нужно что-то обсудить во время проведения обзвона кандидату, РП персонал имеет право на время обсуждения замутить уши кандидату.</li>
-        <li>По окончании всех вопросов член РП персонала обязан известить игрока об этом и сообщить о том, что ему нельзя посещать другие войс-каналы, передавать информацию и вопросы с обзвона другим игрокам. В противном случае РП персонал может исключить кандидата с обзвона и внести в чёрный список лорников.</li>
-        <li>Решение о наборе принимает РП куратор или деп, которому он доверил подобные полномочия (7 пункт ОП).</li>
-        <li>Если вскрывается, что кандидат обладает откатом обзвона, то человек получает перма-ЧС лорных персонажей.</li>
+        <li>Запрещено злоупотребление численными вопросами: «Сколько лет?», «Сколько весит», «Сколько было пальцев» и т.п.</li>
+        <li>Строго запрещено вести себя неадекватно, употреблять нецензурную лексику, грубо общаться, менять конструкцию вопроса (смысл не должен меняться от произношения).</li>
+        <li>Запрещено подробно разъяснять вопрос. На «объясните, что это значит» — отвечать: «Как поняли вопрос, так на него и отвечайте».</li>
+        <li>Порядок: сбор РП и кандидатов → лорная часть → организационная часть → следующий кандидат → просмотр +/– и орг. ответов → вынесение решения.</li>
+        <li>При необходимости обсуждения РП персонал вправе на время замутить уши кандидату.</li>
+        <li>По окончании вопросов — известить игрока, запретить посещать другие войс-каналы и передавать вопросы/информацию другим. Иначе — исключение и ЧС лорников.</li>
+        <li>Решение о наборе принимает РП куратор или деп, которому он доверил полномочия (7 пункт ОП).</li>
+        <li>Если вскрылся откат обзвона — перма-ЧС лорных персонажей.</li>
       </ul>
+    </div>
+  </details>
 
-      <h4>Требования со стороны кандидатов</h4>
+  <!-- Требования кандидатов -->
+  <details class="acc">
+    <summary>
+      <span>🎯 Требования со стороны кандидатов</span>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="acc-body">
       <ul>
-        <li>Кандидат обязан в срок явиться на обзвон. Если кандидат не успел явиться спустя 5 минут после назначенного времени без уведомления РП персонала, те имеют право не допустить его к обзвону.</li>
-        <li>Если кандидат задерживается или не сможет присутствовать на обзвоне, он обязан оповестить РП персонал об этом и указать причину отсутствия или задержки (РП персонал должен ждать данного кандидата до той поры, пока не обзвонят последнего человека; на ожидание после последнего человека даётся 5 минут).</li>
-        <li>Кандидату запрещено: вести себя неадекватно во время обзвона, использовать многочисленную нецензурную лексику, списывать на обзвоне, не реагировать на просьбы РП персонала.</li>
-        <li>У кандидатов должен быть активен только 1 монитор (1 экран в Discord).</li>
-        <li>Кандидат обязан выполнять все корректные требования РП персонала касаемо части обзвона.</li>
-        <li>Кандидату нельзя задавать множество вопросов на обзвоне и мешать РП персоналу выполнять свою работу.</li>
-        <li>Кандидат обязан выполнять все условия, установленные членами РП состава на обзвоне.</li>
-        <li>Кандидату запрещено отходить надолго в AFK во время обзвона.</li>
+        <li>Явиться в срок. Опоздание более 5 минут без уведомления — РП персонал вправе не допустить к обзвону.</li>
+        <li>При задержке/отсутствии — оповестить РП персонал и указать причину. РП персонал ждёт до конца обзвона остальных; после последнего человека — 5 минут.</li>
+        <li>Запрещено: неадекватное поведение, многочисленная нецензурная лексика, списывание, игнорирование просьб РП персонала.</li>
+        <li>Активен только 1 монитор (1 экран в Discord).</li>
+        <li>Выполнять все корректные требования РП персонала касаемо части обзвона.</li>
+        <li>Не задавать множество вопросов и не мешать РП персоналу работать.</li>
+        <li>Выполнять все условия, установленные членами РП состава на обзвоне.</li>
+        <li>Запрещено надолго уходить в AFK.</li>
         <li>Запрещено самовольно покидать обзвон.</li>
-        <li>В случае технических неполадок кандидату даётся 5 минут, чтобы их исправить, если они произошли во время обзвона. Если до начала обзвона — кандидат может быть возвращён обратно в зал ожидания для исправления проблемы, пока РП персонал обзванивает других кандидатов.</li>
-        <li>Если кандидат не сможет исправить тех. неполадки, он будет исключён с обзвона и сможет подать заявку на другого лорника сразу, без КД 3 дня.</li>
-        <li>Кандидат имеет право запросить индивидуальный обзвон на лорника.</li>
-        <li>Кандидату запрещено иметь откат обзвона.</li>
+        <li>При тех. неполадках во время обзвона даётся 5 минут на исправление. До начала — можно вернуть в зал ожидания, пока обзванивают других.</li>
+        <li>Если неполадки не исправлены — исключение с обзвона, можно подать заявку на другого лорника сразу без КД 3 дня.</li>
+        <li>Можно запросить индивидуальный обзвон на лорника.</li>
+        <li>Запрещено иметь откат обзвона.</li>
       </ul>
     </div>
-  </div>
+  </details>
 
-  <!-- Регламент обзвона (второй файл) — дополнительная информация -->
-  <div class="section open" id="section-rp">
-    <div class="section-header" onclick="toggleSection('section-rp')">
-      <span>🏯 РП отдел Yufu.Su · Основная информация и обязанности</span>
-      <span class="arrow">▸</span>
-    </div>
-    <div class="section-body">
+  <!-- ============ СЕКЦИЯ 3: РП ОТДЕЛ ============ -->
+  <div class="sec-head"><span class="sec-num">3</span> РП отдел Yufu.Su</div>
+
+  <details class="acc" open>
+    <summary>
+      <span>🏯 Основная информация</span>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="acc-body">
       <p>РП отдел Yufu.Su отвечает за поддержание и развитие ролевой составляющей сервера. Наша команда обеспечивает качественное ролевое взаимодействие между игроками и следит за соблюдением ролевых стандартов.</p>
-      <p>Мы работаем над созданием immersive-опыта для всех участников сервера, развитием лорных линий и интеграцией игроков в игровой мир. Каждый член нашей команды является опытным ролевиком и примером для других игроков.</p>
+      <p>Мы работаем над созданием immersive-опыта для всех участников сервера, развитием лорных линий и интеграцией игроков в игровой мир. Каждый член нашей команды — опытный ролевик и пример для других игроков.</p>
       <p>РП отдел поддерживает баланс между игровой механикой и ролевой составляющей, обеспечивая максимальное погружение игроков в игровой мир.</p>
+    </div>
+  </details>
 
-      <h4>Обязанности сотрудников</h4>
+  <details class="acc">
+    <summary>
+      <span>👥 Обязанности сотрудников</span>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="acc-body">
+      <h4>РП Куратор</h4>
       <ul>
-        <li><strong>РП Куратор:</strong> проведение обзвонов на лорных персонажей; следит за РП составляющей сервера и онлайном лорников; пресечение нон-РП казусов / первичное одобрение индивидуальных предложений в рамках РП; принятие обращений на РП составляющие и нарушающие моменты сервера от игроков.</li>
-        <li><strong>Заместитель РП Куратора:</strong> замена РП куратора при определённых обстоятельствах; следит за работой лидеров фракции над своей фракцией; помощь РП куратору; ответы на вопросы и помощь в организации РП сферы.</li>
+        <li>Проведение обзвонов на лорных персонажей</li>
+        <li>Следит за РП составляющей сервера и онлайном лорников</li>
+        <li>Пресечение нон-РП казусов / первичное одобрение индивидуальных предложений в рамках РП</li>
+        <li>Принятие обращений на РП составляющие и нарушающие моменты сервера от игроков</li>
       </ul>
+      <h4>Заместитель РП Куратора</h4>
+      <ul>
+        <li>Замена РП куратора при определённых обстоятельствах</li>
+        <li>Следит за работой лидеров фракции над своей фракцией</li>
+        <li>Помощь РП куратору</li>
+        <li>Ответы на вопросы и помощь в организации РП сферы</li>
+      </ul>
+    </div>
+  </details>
 
-      <h4>Шаблоны для работы</h4>
-      <div class="template-grid">
-        <div class="template-item">
-          <div class="flex-between"><strong>Шаблон для объявления на лорника</strong> <span class="code">@demonslayer2</span></div>
-          <div style="margin-top: 0.6rem; font-size: 0.9rem; color: #c0e6d4;">
-            ｢1｣ Пингуете себя через @<br>
-            ｢2｣ Возраст:<br>
-            ｢3｣ Коротко о себе.<br>
-            ｢4｣ Средний суточный онлайн:<br>
-            ｢5｣ Часовой пояс:<br>
-            ｢6｣ Почему именно вы должны стать этим лорником?:<br>
-            ｢7｣ Расскажите развёрнуто и своими словами о персонаже:<br>
-            ｢8｣ Какие у вас были серьёзные нарушения за последние полгода?<br>
-            ｢9｣ Ваш SteamID:
-          </div>
+  <!-- ============ СЕКЦИЯ 4: ШАБЛОНЫ ============ -->
+  <div class="sec-head"><span class="sec-num">4</span> Шаблоны для работы</div>
+
+  <details class="acc" open>
+    <summary>
+      <span>📋 Шаблон объявления на лорника</span>
+      <span class="chev">▸</span>
+    </summary>
+    <div class="acc-body">
+      <p><span class="tag">@demonslayer2</span></p>
+      <p>Объявлен набор на лорного персонажа: <strong>__lore-name__</strong></p>
+      <div class="tpl-grid">
+        <div class="tpl">
+          <div class="tpl-head"><b>Форма заявки</b><span class="tag">9 пунктов</span></div>
+          <ul>
+            <li>｢1｣ Пингуете себя через @</li>
+            <li>｢2｣ Возраст:</li>
+            <li>｢3｣ Коротко о себе.</li>
+            <li>｢4｣ Средний суточный онлайн:</li>
+            <li>｢5｣ Часовой пояс:</li>
+            <li>｢6｣ Почему именно вы должны стать этим лорником?:</li>
+            <li>｢7｣ Расскажите развёрнуто и своими словами о персонаже:</li>
+            <li>｢8｣ Какие у вас были серьёзные нарушения за последние полгода?</li>
+            <li>｢9｣ Ваш SteamID:</li>
+          </ul>
         </div>
-        <div class="template-item">
-          <div class="flex-between"><strong>Критерии</strong> <span class="code">обязательно</span></div>
-          <div style="margin-top: 0.6rem; font-size: 0.9rem; color: #c0e6d4;">
-            ｢1｣ Ваш возраст 14+ включительно;<br>
-            ｢2｣ Отсутствует ЧС лорников;<br>
-            ｢3｣ Имеется микрофон.<br>
-            ｢4｣ Стабильный онлайн за последние 15+ дней, на втором сервере.
-          </div>
+        <div class="tpl">
+          <div class="tpl-head"><b>Критерии</b><span class="tag">обязательно</span></div>
+          <ul>
+            <li>｢1｣ Возраст 14+ включительно;</li>
+            <li>｢2｣ Отсутствует ЧС лорников;</li>
+            <li>｢3｣ Имеется микрофон;</li>
+            <li>｢4｣ Стабильный онлайн за последние 15+ дней на втором сервере.</li>
+          </ul>
         </div>
-        <div class="template-item">
-          <div class="flex-between"><strong>Дополнительно</strong> <span class="code">важно</span></div>
-          <div style="margin-top: 0.6rem; font-size: 0.9rem; color: #c0e6d4;">
-            ｢1｣ Вопросы на лорных персонажей, что имеют дополнительные истории, могут содержать вопросы именно по ним, поэтому готовьтесь не только по манге.<br>
-            ｢2｣ В качестве идей на лорного персонажа запрещено использовать документы, которые вы получили с других РП проектов.<br>
-            ｢3｣ Вы должны своими словами написать историю персонажа.<br>
-            ｢4｣ Вы не должны иметь заявку на другого лорного персонажа.<br>
-            ｢5｣ Если ваша заявка не соответствует требованиям — РП состав имеет право её отклонить, не уведомляя о причине.<br>
-            ｢6｣ Если вы наборный лорник на первом, вы должны иметь одобрение [Куратора или его замов обоих серверов (1 и 2)].
-          </div>
+        <div class="tpl">
+          <div class="tpl-head"><b>Дополнительно</b><span class="tag">важно</span></div>
+          <ul>
+            <li>｢1｣ Вопросы на лорных персонажей с дополнительными историями могут содержать вопросы именно по ним — готовьтесь не только по манге.</li>
+            <li>｢2｣ Запрещено использовать документы с других РП проектов.</li>
+            <li>｢3｣ Историю персонажа писать своими словами.</li>
+            <li>｢4｣ Не иметь заявку на другого лорного персонажа.</li>
+            <li>｢5｣ Несоответствие требованиям — РП состав вправе отклонить без уведомления о причине.</li>
+            <li>｢6｣ Наборный лорник на первом сервере — нужно одобрение Куратора или его замов обоих серверов (1 и 2).</li>
+          </ul>
         </div>
       </div>
     </div>
+  </details>
+
+  <!-- ============ ПРЕДУПРЕЖДЕНИЕ ============ -->
+  <div class="warnbox">
+    <strong>⚠️ Важно:</strong> несоблюдение регламента обзвона влечёт исключение из мероприятия, внесение в чёрный список лорников и/или перма-ЧС. Спорные ситуации решает РП куратор или уполномоченный деп.
   </div>
 
-  <!-- Предупреждение о важности -->
-  <div class="warning-box">
-    <strong>⚠️ Важно:</strong> несоблюдение регламента обзвона влечёт за собой исключение из мероприятия, внесение в чёрный список лорников и/или перма-ЧС. Все спорные ситуации решаются РП куратором или уполномоченным депом.
-  </div>
-
-  <!-- Футер -->
-  <footer class="footer">
+  <!-- ============ ФУТЕР ============ -->
+  <footer class="foot">
     <span>Yufu.Su · RP Department</span>
     <span>⛩️ Demon Slayer · server 2</span>
     <span>Регламент обзвона v2.4</span>
   </footer>
+
 </div>
-
-<script>
-  // Простой аккордеон
-  function toggleSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.classList.toggle('open');
-    }
-  }
-
-  // По умолчанию оба раздела открыты (open в html), если нужно закрыть – можно убрать класс open.
-  // Для наглядности оставляем оба открытыми.
-
-  // Добавим немного интерактивности: при клике на заголовок меняется стрелка (уже реализовано через CSS)
-  // и можно добавить плавность, но и так работает.
-</script>
-
 </body>
 </html>
 ```
