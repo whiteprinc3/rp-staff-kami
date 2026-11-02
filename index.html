@@ -1,4 +1,4 @@
-html
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,30 +7,34 @@ html
 <title>Yufu.Su · RP Регламент</title>
 <style>
   :root{
-    --bg:#07140f;
-    --bg-card:#0d211a;
-    --bg-elev:#113026;
-    --border:#1d4a38;
-    --border-soft:#173a2c;
-    --text:#d8ece2;
-    --text-dim:#8fb3a3;
-    --accent:#3fbf8a;
-    --accent-soft:#a8e8cc;
-    --warn:#d9b64a;
-    --danger:#c96a4d;
-    --radius:14px;
+    --bg:#0d0a14;
+    --bg-card:#151022;
+    --bg-elev:#1c1530;
+    --border:#332550;
+    --border-soft:#271c3d;
+    --text:#e6e0f5;
+    --text-dim:#9d8fbf;
+    --accent:#a06bff;
+    --accent-soft:#d4c2ff;
+    --accent-glow:#7a4dd4;
+    --warn:#e0b64a;
+    --radius:12px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
     background:var(--bg);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, #2a1a4a 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 90% 100%, #1f1338 0%, transparent 60%);
+    background-attachment:fixed;
     color:var(--text);
     font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
     line-height:1.6;
     font-size:15px;
     min-height:100vh;
   }
-  ::selection{background:var(--accent);color:#04120c}
+  ::selection{background:var(--accent);color:#0d0a14}
   ::-webkit-scrollbar{width:10px;height:10px}
   ::-webkit-scrollbar-track{background:var(--bg)}
   ::-webkit-scrollbar-thumb{background:var(--border);border-radius:6px}
@@ -38,34 +42,35 @@ html
 
   .wrap{max-width:1180px;margin:0 auto;padding:24px 20px 80px}
 
-  /* ---------- Шапка ---------- */
+  /* Шапка */
   .topbar{
     display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;
-    gap:16px;padding:18px 24px;margin-bottom:28px;
-    background:linear-gradient(135deg,#0f2c21,#0a1f17);
+    gap:16px;padding:18px 24px;margin-bottom:32px;
+    background:linear-gradient(135deg,#1c1530,#151022);
     border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:0 8px 32px -12px #00000080;
   }
   .brand{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
   .brand-mark{
     width:44px;height:44px;flex:0 0 44px;border-radius:12px;
     display:grid;place-items:center;font-size:22px;
-    background:radial-gradient(circle at 30% 30%,#1e5e46,#0b2419);
+    background:radial-gradient(circle at 30% 30%,#3d2a6b,#1c1530);
     border:1px solid var(--accent);
-    box-shadow:0 0 18px -6px var(--accent);
+    box-shadow:0 0 20px -6px var(--accent);
   }
-  .brand-title{font-size:19px;font-weight:700;letter-spacing:-.01em}
+  .brand-title{font-size:19px;font-weight:700;letter-spacing:-.01em;color:var(--accent-soft)}
   .brand-sub{font-size:12.5px;color:var(--text-dim);margin-top:2px}
   .pill{
     display:inline-flex;align-items:center;gap:6px;
     padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600;
-    background:#123528;border:1px solid var(--border);color:var(--accent-soft);
+    background:#241a3d;border:1px solid var(--border);color:var(--accent-soft);
     white-space:nowrap;
   }
   .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
 
-  /* ---------- Заголовки секций ---------- */
+  /* Заголовки секций */
   .sec-head{
-    display:flex;align-items:center;gap:12px;margin:34px 0 16px;
+    display:flex;align-items:center;gap:12px;margin:36px 0 16px;
     font-size:17px;font-weight:700;color:var(--accent-soft);
     letter-spacing:-.01em;
   }
@@ -76,14 +81,14 @@ html
     border:1px solid var(--border);color:var(--accent);
   }
 
-  /* ---------- Сетка карточек ---------- */
+  /* Сетка карточек */
   .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
   .card{
     background:var(--bg-card);border:1px solid var(--border);
     border-radius:var(--radius);padding:20px 22px;
-    transition:border-color .18s,transform .18s;
+    transition:border-color .18s;
   }
-  .card:hover{border-color:#2a6b52}
+  .card:hover{border-color:#4a3a6e}
   .card-title{
     display:flex;align-items:center;gap:10px;
     font-size:15.5px;font-weight:700;color:var(--accent-soft);
@@ -92,21 +97,20 @@ html
   }
   .card-title .ico{font-size:18px;line-height:1}
 
-  /* ---------- Чеклист ---------- */
+  /* Чеклист */
   .check{list-style:none;display:flex;flex-direction:column;gap:9px}
-  .check li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#c8e0d4}
+  .check li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#d0c8e6}
   .check li .n{
     flex:0 0 20px;height:20px;display:grid;place-items:center;
     border-radius:6px;font-size:11px;font-weight:700;margin-top:1px;
-    background:#123528;border:1px solid var(--border);color:var(--accent);
+    background:#241a3d;border:1px solid var(--border);color:var(--accent);
   }
-  .check li.danger .n{background:#2c1a13;border-color:#5a3324;color:#e3a184}
+  .check li.danger .n{background:#2e1a1a;border-color:#5a2a2a;color:#e3a184}
   .check li.danger{color:#ecc3b2}
   .check li .hint{color:var(--text-dim);font-size:12.5px}
 
-  /* ---------- Аккордеон ---------- */
-  .acc{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px}
-  .acc + .acc{margin-top:0}
+  /* Аккордеон */
+  .acc{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
   .acc summary{
     list-style:none;cursor:pointer;padding:16px 22px;
     display:flex;justify-content:space-between;align-items:center;gap:14px;
@@ -114,14 +118,14 @@ html
     background:var(--bg-elev);transition:background .15s;
   }
   .acc summary::-webkit-details-marker{display:none}
-  .acc summary:hover{background:#163a2c}
+  .acc summary:hover{background:#241a3d}
   .acc summary .chev{
     flex:0 0 auto;font-size:13px;color:var(--accent);
     transition:transform .2s;display:inline-block;
   }
   .acc[open] summary .chev{transform:rotate(90deg)}
   .acc-body{padding:20px 22px;border-top:1px solid var(--border-soft);font-size:14px}
-  .acc-body p{margin-bottom:11px;color:#cbe3d7}
+  .acc-body p{margin-bottom:11px;color:#d0c8e6}
   .acc-body p:last-child{margin-bottom:0}
 
   h4{
@@ -132,45 +136,45 @@ html
   h4:first-child{margin-top:0}
 
   .acc-body ul,.acc-body ol{margin:0 0 12px 0;padding-left:22px}
-  .acc-body li{margin-bottom:7px;color:#cbe3d7}
+  .acc-body li{margin-bottom:7px;color:#d0c8e6}
   .acc-body li:last-child{margin-bottom:0}
-  .acc-body strong{color:#eafff4}
+  .acc-body strong{color:#f0eaff}
 
-  /* ---------- Блоки-шаблоны ---------- */
+  /* Блоки-шаблоны */
   .tpl-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:14px}
   .tpl{
     background:var(--bg-elev);border:1px solid var(--border);
-    border-radius:11px;padding:16px 18px;font-size:13.5px;
+    border-radius:10px;padding:16px 18px;font-size:13.5px;
   }
   .tpl-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
   .tpl-head b{color:var(--accent-soft);font-size:13.5px}
   .tag{
     font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;
-    padding:2px 8px;border-radius:6px;background:#0a1c15;
+    padding:2px 8px;border-radius:6px;background:#120d20;
     border:1px solid var(--border);color:var(--accent-soft);white-space:nowrap;
   }
-  .tpl ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;color:#bcd8c9}
+  .tpl ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;color:#c0b6dc}
   .tpl ul li{padding:0;margin:0}
 
-  /* ---------- Предупреждение ---------- */
+  /* Предупреждение */
   .warnbox{
     margin-top:28px;padding:16px 20px;border-radius:var(--radius);
-    background:#1a2410;border:1px solid #4c5c22;
+    background:#1e1a10;border:1px solid #4c4022;
     border-left:4px solid var(--warn);color:#e9efcf;font-size:13.5px;
   }
   .warnbox strong{color:#ffe9a7}
 
-  /* ---------- Футер ---------- */
+  /* Футер */
   .foot{
     margin-top:44px;padding-top:22px;border-top:1px solid var(--border-soft);
     display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
     font-size:12.5px;color:var(--text-dim);
   }
 
-  /* ---------- Мобилки ---------- */
+  /* Мобилки */
   @media(max-width:560px){
     .wrap{padding:16px 14px 60px}
-    .topbar{padding:14px 16px;border-radius:12px}
+    .topbar{padding:14px 16px}
     .brand-title{font-size:16px}
     .brand-sub{font-size:11.5px}
     .acc summary{padding:14px 16px;font-size:14px}
@@ -183,7 +187,6 @@ html
 <body>
 <div class="wrap">
 
-  <!-- ============ ШАПКА ============ -->
   <header class="topbar">
     <div class="brand">
       <div class="brand-mark">⛩️</div>
@@ -198,11 +201,9 @@ html
     </div>
   </header>
 
-  <!-- ============ СЕКЦИЯ 1: ЧЕКЛИСТЫ ============ -->
   <div class="sec-head"><span class="sec-num">1</span> Проверка заявок</div>
 
   <div class="grid">
-    <!-- Лорники -->
     <div class="card">
       <div class="card-title"><span class="ico">🗡️</span> Одобрение заявок лорников</div>
       <ul class="check">
@@ -215,7 +216,6 @@ html
       </ul>
     </div>
 
-    <!-- Лидеры -->
     <div class="card">
       <div class="card-title"><span class="ico">👑</span> Одобрение заявок лидеров</div>
       <ul class="check">
@@ -229,15 +229,10 @@ html
     </div>
   </div>
 
-  <!-- ============ СЕКЦИЯ 2: РЕГЛАМЕНТ ОБЗВОНОВ ============ -->
   <div class="sec-head"><span class="sec-num">2</span> Регламент проведения обзвонов</div>
 
-  <!-- Общее положение -->
   <details class="acc" open>
-    <summary>
-      <span>📜 Общее положение</span>
-      <span class="chev">▸</span>
-    </summary>
+    <summary><span>📜 Общее положение</span><span class="chev">▸</span></summary>
     <div class="acc-body">
       <p><strong>Обзвон</strong> — мероприятие, устраиваемое РП персоналом с целью отбора кандидата на должность лорного персонажа или лидера фракции.</p>
       <ul>
@@ -254,12 +249,8 @@ html
     </div>
   </details>
 
-  <!-- Требования РП персонала -->
   <details class="acc">
-    <summary>
-      <span>🧑‍⚖️ Требования со стороны РП персонала</span>
-      <span class="chev">▸</span>
-    </summary>
+    <summary><span>🧑‍⚖️ Требования со стороны РП персонала</span><span class="chev">▸</span></summary>
     <div class="acc-body">
       <ul>
         <li>Создать войс-канал за 10–5 минут до начала, пингануть игроков в ветке заявок и оповестить о скором начале.</li>
@@ -284,12 +275,8 @@ html
     </div>
   </details>
 
-  <!-- Требования кандидатов -->
   <details class="acc">
-    <summary>
-      <span>🎯 Требования со стороны кандидатов</span>
-      <span class="chev">▸</span>
-    </summary>
+    <summary><span>🎯 Требования со стороны кандидатов</span><span class="chev">▸</span></summary>
     <div class="acc-body">
       <ul>
         <li>Явиться в срок. Опоздание более 5 минут без уведомления — РП персонал вправе не допустить к обзвону.</li>
@@ -309,14 +296,10 @@ html
     </div>
   </details>
 
-  <!-- ============ СЕКЦИЯ 3: РП ОТДЕЛ ============ -->
   <div class="sec-head"><span class="sec-num">3</span> РП отдел Yufu.Su</div>
 
   <details class="acc" open>
-    <summary>
-      <span>🏯 Основная информация</span>
-      <span class="chev">▸</span>
-    </summary>
+    <summary><span>🏯 Основная информация</span><span class="chev">▸</span></summary>
     <div class="acc-body">
       <p>РП отдел Yufu.Su отвечает за поддержание и развитие ролевой составляющей сервера. Наша команда обеспечивает качественное ролевое взаимодействие между игроками и следит за соблюдением ролевых стандартов.</p>
       <p>Мы работаем над созданием immersive-опыта для всех участников сервера, развитием лорных линий и интеграцией игроков в игровой мир. Каждый член нашей команды — опытный ролевик и пример для других игроков.</p>
@@ -325,10 +308,7 @@ html
   </details>
 
   <details class="acc">
-    <summary>
-      <span>👥 Обязанности сотрудников</span>
-      <span class="chev">▸</span>
-    </summary>
+    <summary><span>👥 Обязанности сотрудников</span><span class="chev">▸</span></summary>
     <div class="acc-body">
       <h4>РП Куратор</h4>
       <ul>
@@ -347,14 +327,10 @@ html
     </div>
   </details>
 
-  <!-- ============ СЕКЦИЯ 4: ШАБЛОНЫ ============ -->
   <div class="sec-head"><span class="sec-num">4</span> Шаблоны для работы</div>
 
   <details class="acc" open>
-    <summary>
-      <span>📋 Шаблон объявления на лорника</span>
-      <span class="chev">▸</span>
-    </summary>
+    <summary><span>📋 Шаблон объявления на лорника</span><span class="chev">▸</span></summary>
     <div class="acc-body">
       <p><span class="tag">@demonslayer2</span></p>
       <p>Объявлен набор на лорного персонажа: <strong>__lore-name__</strong></p>
@@ -397,12 +373,10 @@ html
     </div>
   </details>
 
-  <!-- ============ ПРЕДУПРЕЖДЕНИЕ ============ -->
   <div class="warnbox">
     <strong>⚠️ Важно:</strong> несоблюдение регламента обзвона влечёт исключение из мероприятия, внесение в чёрный список лорников и/или перма-ЧС. Спорные ситуации решает РП куратор или уполномоченный деп.
   </div>
 
-  <!-- ============ ФУТЕР ============ -->
   <footer class="foot">
     <span>Yufu.Su · RP Department</span>
     <span>⛩️ Demon Slayer · server 2</span>
@@ -412,3 +386,4 @@ html
 </div>
 </body>
 </html>
+```
