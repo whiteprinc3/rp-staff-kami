@@ -1,239 +1,420 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yufu.Su · RP Регламент</title>
+<title>Yufu.Su — RP Регламент</title>
 <style>
   :root{
-    --bg:#0d0a14;
-    --bg-card:#151022;
-    --bg-elev:#1c1530;
-    --border:#332550;
-    --border-soft:#271c3d;
-    --text:#e6e0f5;
-    --text-dim:#9d8fbf;
-    --accent:#a06bff;
-    --accent-soft:#d4c2ff;
-    --accent-glow:#7a4dd4;
-    --warn:#e0b64a;
-    --radius:12px;
+    --bg:#1a0e0a;
+    --bg-2:#241410;
+    --panel:#2c1912;
+    --panel-2:#352017;
+    --line:#4a2c1f;
+    --line-soft:#3a2218;
+    --txt:#f2e3d5;
+    --txt-dim:#b89478;
+    --gold:#e8b04b;
+    --gold-2:#f5cf7a;
+    --ember:#d96b32;
+    --red:#c0432f;
+    --radius:10px;
   }
+
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
+
   body{
     background:var(--bg);
     background-image:
-      radial-gradient(ellipse 80% 50% at 50% -20%, #2a1a4a 0%, transparent 70%),
-      radial-gradient(ellipse 60% 40% at 90% 100%, #1f1338 0%, transparent 60%);
+      radial-gradient(ellipse 90% 60% at 50% -10%, #3a1a10 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 100% 100%, #2a1208 0%, transparent 60%);
     background-attachment:fixed;
-    color:var(--text);
-    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-    line-height:1.6;
-    font-size:15px;
+    color:var(--txt);
+    font-family:"Georgia","Times New Roman",serif;
+    font-size:15.5px;
+    line-height:1.7;
     min-height:100vh;
+    -webkit-font-smoothing:antialiased;
   }
-  ::selection{background:var(--accent);color:#0d0a14}
-  ::-webkit-scrollbar{width:10px;height:10px}
+
+  ::selection{background:var(--gold);color:#1a0e0a}
+
+  ::-webkit-scrollbar{width:12px}
   ::-webkit-scrollbar-track{background:var(--bg)}
-  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:6px}
-  ::-webkit-scrollbar-thumb:hover{background:var(--accent)}
-
-  .wrap{max-width:1180px;margin:0 auto;padding:24px 20px 80px}
-
-  /* Шапка */
-  .topbar{
-    display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;
-    gap:16px;padding:18px 24px;margin-bottom:32px;
-    background:linear-gradient(135deg,#1c1530,#151022);
-    border:1px solid var(--border);border-radius:var(--radius);
-    box-shadow:0 8px 32px -12px #00000080;
+  ::-webkit-scrollbar-thumb{
+    background:var(--line);
+    border-radius:6px;
+    border:2px solid var(--bg);
   }
-  .brand{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-  .brand-mark{
-    width:44px;height:44px;flex:0 0 44px;border-radius:12px;
-    display:grid;place-items:center;font-size:22px;
-    background:radial-gradient(circle at 30% 30%,#3d2a6b,#1c1530);
-    border:1px solid var(--accent);
-    box-shadow:0 0 20px -6px var(--accent);
+  ::-webkit-scrollbar-thumb:hover{background:var(--gold)}
+
+  /* ===== ОБЩИЙ КОНТЕЙНЕР ===== */
+  .shell{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 22px 100px;
   }
-  .brand-title{font-size:19px;font-weight:700;letter-spacing:-.01em;color:var(--accent-soft)}
-  .brand-sub{font-size:12.5px;color:var(--text-dim);margin-top:2px}
-  .pill{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600;
-    background:#241a3d;border:1px solid var(--border);color:var(--accent-soft);
+
+  /* ===== ВЕРХНЯЯ ПОЛОСА ===== */
+  .masthead{
+    padding:26px 0 22px;
+    border-bottom:2px solid var(--line);
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+  }
+  .mast-left{display:flex;align-items:center;gap:16px}
+  .sigil{
+    width:52px;height:52px;flex:0 0 52px;
+    display:grid;place-items:center;
+    font-size:26px;
+    border:2px solid var(--gold);
+    border-radius:50%;
+    background:radial-gradient(circle,#4a2414,#1a0e0a);
+    box-shadow:0 0 22px -6px var(--gold);
+  }
+  .mast-title{
+    font-size:24px;
+    font-weight:700;
+    color:var(--gold-2);
+    letter-spacing:.02em;
+    line-height:1.2;
+  }
+  .mast-sub{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    color:var(--txt-dim);
+    margin-top:4px;
+    font-family:"Courier New",monospace;
+  }
+  .mast-right{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{
+    font-family:"Courier New",monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:6px 13px;
+    border:1px solid var(--line);
+    border-radius:3px;
+    color:var(--gold-2);
+    background:var(--panel);
     white-space:nowrap;
   }
-  .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+  .chip.live{border-color:var(--gold);color:var(--gold)}
+  .chip.live::before{
+    content:"●";
+    color:var(--ember);
+    margin-right:6px;
+    animation:blink 1.8s infinite;
+  }
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 
-  /* Заголовки секций */
-  .sec-head{
-    display:flex;align-items:center;gap:12px;margin:36px 0 16px;
-    font-size:17px;font-weight:700;color:var(--accent-soft);
-    letter-spacing:-.01em;
+  /* ===== ТИТУЛ ГЛАВЫ ===== */
+  .chapter{
+    margin:44px 0 22px;
+    display:flex;
+    align-items:baseline;
+    gap:16px;
   }
-  .sec-head::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
-  .sec-num{
-    width:26px;height:26px;flex:0 0 26px;display:grid;place-items:center;
-    border-radius:8px;font-size:13px;background:var(--bg-elev);
-    border:1px solid var(--border);color:var(--accent);
+  .chapter-num{
+    font-family:"Courier New",monospace;
+    font-size:13px;
+    color:var(--ember);
+    letter-spacing:.2em;
+    padding-top:4px;
+    white-space:nowrap;
   }
-
-  /* Сетка карточек */
-  .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
-  .card{
-    background:var(--bg-card);border:1px solid var(--border);
-    border-radius:var(--radius);padding:20px 22px;
-    transition:border-color .18s;
+  .chapter-line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(90deg,var(--line),transparent);
   }
-  .card:hover{border-color:#4a3a6e}
-  .card-title{
-    display:flex;align-items:center;gap:10px;
-    font-size:15.5px;font-weight:700;color:var(--accent-soft);
-    padding-bottom:12px;margin-bottom:14px;
-    border-bottom:1px solid var(--border-soft);
-  }
-  .card-title .ico{font-size:18px;line-height:1}
-
-  /* Чеклист */
-  .check{list-style:none;display:flex;flex-direction:column;gap:9px}
-  .check li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#d0c8e6}
-  .check li .n{
-    flex:0 0 20px;height:20px;display:grid;place-items:center;
-    border-radius:6px;font-size:11px;font-weight:700;margin-top:1px;
-    background:#241a3d;border:1px solid var(--border);color:var(--accent);
-  }
-  .check li.danger .n{background:#2e1a1a;border-color:#5a2a2a;color:#e3a184}
-  .check li.danger{color:#ecc3b2}
-  .check li .hint{color:var(--text-dim);font-size:12.5px}
-
-  /* Аккордеон */
-  .acc{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
-  .acc summary{
-    list-style:none;cursor:pointer;padding:16px 22px;
-    display:flex;justify-content:space-between;align-items:center;gap:14px;
-    font-weight:700;font-size:15px;color:var(--accent-soft);
-    background:var(--bg-elev);transition:background .15s;
-  }
-  .acc summary::-webkit-details-marker{display:none}
-  .acc summary:hover{background:#241a3d}
-  .acc summary .chev{
-    flex:0 0 auto;font-size:13px;color:var(--accent);
-    transition:transform .2s;display:inline-block;
-  }
-  .acc[open] summary .chev{transform:rotate(90deg)}
-  .acc-body{padding:20px 22px;border-top:1px solid var(--border-soft);font-size:14px}
-  .acc-body p{margin-bottom:11px;color:#d0c8e6}
-  .acc-body p:last-child{margin-bottom:0}
-
-  h4{
-    font-size:14px;font-weight:700;color:var(--accent-soft);
-    margin:20px 0 10px;padding-left:10px;
-    border-left:3px solid var(--accent);line-height:1.3;
-  }
-  h4:first-child{margin-top:0}
-
-  .acc-body ul,.acc-body ol{margin:0 0 12px 0;padding-left:22px}
-  .acc-body li{margin-bottom:7px;color:#d0c8e6}
-  .acc-body li:last-child{margin-bottom:0}
-  .acc-body strong{color:#f0eaff}
-
-  /* Блоки-шаблоны */
-  .tpl-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:14px}
-  .tpl{
-    background:var(--bg-elev);border:1px solid var(--border);
-    border-radius:10px;padding:16px 18px;font-size:13.5px;
-  }
-  .tpl-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-  .tpl-head b{color:var(--accent-soft);font-size:13.5px}
-  .tag{
-    font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;
-    padding:2px 8px;border-radius:6px;background:#120d20;
-    border:1px solid var(--border);color:var(--accent-soft);white-space:nowrap;
-  }
-  .tpl ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;color:#c0b6dc}
-  .tpl ul li{padding:0;margin:0}
-
-  /* Предупреждение */
-  .warnbox{
-    margin-top:28px;padding:16px 20px;border-radius:var(--radius);
-    background:#1e1a10;border:1px solid #4c4022;
-    border-left:4px solid var(--warn);color:#e9efcf;font-size:13.5px;
-  }
-  .warnbox strong{color:#ffe9a7}
-
-  /* Футер */
-  .foot{
-    margin-top:44px;padding-top:22px;border-top:1px solid var(--border-soft);
-    display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
-    font-size:12.5px;color:var(--text-dim);
+  .chapter-title{
+    font-size:21px;
+    font-weight:700;
+    color:var(--gold-2);
+    letter-spacing:.01em;
   }
 
-  /* Мобилки */
-  @media(max-width:560px){
-    .wrap{padding:16px 14px 60px}
-    .topbar{padding:14px 16px}
-    .brand-title{font-size:16px}
-    .brand-sub{font-size:11.5px}
-    .acc summary{padding:14px 16px;font-size:14px}
-    .acc-body{padding:16px}
-    .card{padding:16px}
-    .tpl-grid{grid-template-columns:1fr}
+  /* ===== КАРТОЧКИ-СПИСКИ ===== */
+  .duo{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  @media(max-width:780px){.duo{grid-template-columns:1fr}}
+
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:0;
+    overflow:hidden;
+    box-shadow:0 6px 24px -14px #000;
+  }
+  .panel-head{
+    padding:14px 20px;
+    background:linear-gradient(90deg,#3a1f14,#2c1912);
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:15px;
+    font-weight:700;
+    color:var(--gold-2);
+    letter-spacing:.01em;
+  }
+  .panel-head .glyph{font-size:17px;line-height:1}
+
+  .steps{
+    list-style:none;
+    padding:6px 0;
+  }
+  .steps li{
+    display:flex;
+    gap:14px;
+    padding:11px 20px;
+    font-size:14.5px;
+    border-bottom:1px dashed var(--line-soft);
+    color:var(--txt);
+    transition:background .15s;
+  }
+  .steps li:last-child{border-bottom:none}
+  .steps li:hover{background:var(--panel-2)}
+  .steps li .idx{
+    flex:0 0 22px;
+    height:22px;
+    display:grid;
+    place-items:center;
+    font-family:"Courier New",monospace;
+    font-size:11px;
+    font-weight:700;
+    color:var(--gold);
+    border:1px solid var(--line);
+    border-radius:4px;
+    background:#1f110b;
+    margin-top:1px;
+  }
+  .steps li.deny{color:#f0c3b2}
+  .steps li.deny .idx{color:var(--red);border-color:#5a251b;background:#2a120d}
+  .note{
+    color:var(--txt-dim);
+    font-size:12.5px;
+    font-family:"Courier New",monospace;
+  }
+
+  /* ===== АККОРДЕОНЫ ===== */
+  .fold{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    margin-bottom:14px;
+    overflow:hidden;
+  }
+  .fold summary{
+    list-style:none;
+    cursor:pointer;
+    padding:16px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    font-size:15px;
+    font-weight:700;
+    color:var(--gold-2);
+    background:linear-gradient(90deg,#341d13,#2c1912);
+    transition:background .15s;
+    user-select:none;
+  }
+  .fold summary::-webkit-details-marker{display:none}
+  .fold summary:hover{background:#3f2318}
+  .fold summary .mark{
+    flex:0 0 auto;
+    font-family:"Courier New",monospace;
+    font-size:16px;
+    color:var(--ember);
+    transition:transform .22s;
+  }
+  .fold[open] summary .mark{transform:rotate(90deg)}
+  .fold-body{
+    padding:20px 24px 24px;
+    border-top:1px solid var(--line);
+    font-size:14.5px;
+  }
+
+  .fold-body p{margin-bottom:12px;color:#e8d6c6}
+  .fold-body p:last-child{margin-bottom:0}
+
+  .h5{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:var(--ember);
+    font-family:"Courier New",monospace;
+    margin:22px 0 10px;
+    padding-bottom:6px;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .h5:first-child{margin-top:0}
+
+  .fold-body ul,
+  .fold-body ol{margin:0 0 14px 0;padding-left:22px}
+  .fold-body li{margin-bottom:8px;color:#e8d6c6}
+  .fold-body li:last-child{margin-bottom:0}
+  .fold-body li::marker{color:var(--ember)}
+  .fold-body strong{color:var(--gold-2);font-weight:700}
+
+  /* ===== ТАБЛИЦА-ШАБЛОН ===== */
+  .tpl-row{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:14px;
+    margin-top:16px;
+  }
+  .tpl-card{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-left:3px solid var(--gold);
+    border-radius:6px;
+    padding:16px 18px;
+    font-size:13.5px;
+  }
+  .tpl-card h6{
+    font-family:"Courier New",monospace;
+    font-size:11.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:8px;
+  }
+  .tpl-card h6 span{
+    color:var(--txt-dim);
+    font-size:10px;
+    border:1px solid var(--line);
+    padding:1px 7px;
+    border-radius:3px;
+    letter-spacing:.05em;
+    white-space:nowrap;
+  }
+  .tpl-card ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px}
+  .tpl-card li{color:#dcc8b6;font-size:13px;margin:0;line-height:1.55}
+
+  /* ===== ВАЖНЫЙ БЛОК ===== */
+  .caution{
+    margin-top:30px;
+    padding:18px 22px;
+    background:#2a1a0e;
+    border:1px solid #5a3d1e;
+    border-left:4px solid var(--gold);
+    border-radius:6px;
+    font-size:14px;
+    color:#f0e0c2;
+  }
+  .caution b{color:var(--gold-2)}
+
+  /* ===== ПОДВАЛ ===== */
+  .colophon{
+    margin-top:50px;
+    padding-top:24px;
+    border-top:2px solid var(--line);
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:12px;
+    font-family:"Courier New",monospace;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--txt-dim);
+  }
+  .colophon span:first-child{color:var(--gold)}
+
+  /* ===== МОБИЛА ===== */
+  @media(max-width:600px){
+    .shell{padding:0 16px 70px}
+    .masthead{padding:20px 0 18px}
+    .mast-title{font-size:19px}
+    .mast-sub{font-size:10.5px;letter-spacing:.12em}
+    .sigil{width:42px;height:42px;flex:0 0 42px;font-size:21px}
+    .chapter-title{font-size:17px}
+    .fold summary{padding:14px 16px;font-size:14px}
+    .fold-body{padding:16px 18px 20px;font-size:14px}
+    .panel-head{padding:12px 16px;font-size:14px}
+    .steps li{padding:10px 16px;font-size:13.5px}
+    .tpl-row{grid-template-columns:1fr}
+    .chip{font-size:10.5px;padding:5px 10px}
   }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="shell">
 
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand-mark">⛩️</div>
+  <!-- ===== ШАПКА ===== -->
+  <header class="masthead">
+    <div class="mast-left">
+      <div class="sigil">刀</div>
       <div>
-        <div class="brand-title">Yufu.Su · RP отдел</div>
-        <div class="brand-sub">Demon Slayer · Server 2 · yufu.us</div>
+        <div class="mast-title">Yufu.Su · РП Регламент</div>
+        <div class="mast-sub">Demon Slayer · Server 2 · yufu.us</div>
       </div>
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <span class="pill"><span class="dot"></span> регламент активен</span>
-      <span class="pill">обзвоны · лорники · лидеры</span>
+    <div class="mast-right">
+      <span class="chip live">Регламент активен</span>
+      <span class="chip">v2.4</span>
     </div>
   </header>
 
-  <div class="sec-head"><span class="sec-num">1</span> Проверка заявок</div>
+  <!-- ===== ГЛАВА 1 ===== -->
+  <div class="chapter">
+    <span class="chapter-num">ГЛАВА 01</span>
+    <span class="chapter-title">Проверка заявок</span>
+    <span class="chapter-line"></span>
+  </div>
 
-  <div class="grid">
-    <div class="card">
-      <div class="card-title"><span class="ico">🗡️</span> Одобрение заявок лорников</div>
-      <ul class="check">
-        <li><span class="n">1</span><div>Проверить на наличие чёрного списка лорников</div></li>
-        <li><span class="n">2</span><div>Проверка на наличие чёрного списка проекта</div></li>
-        <li><span class="n">3</span><div>Стабильный онлайн за последние 15+ дней <span class="hint">(только 2-й сервер)</span></div></li>
-        <li><span class="n">4</span><div>Проверить 2-й пункт (возраст) на соответствие требований</div></li>
-        <li><span class="n">5</span><div>Проверить 7-й пункт на копипаст и количество содержания</div></li>
-        <li class="danger"><span class="n">6</span><div>Стоит на лорнике в одной из фракций — <strong>отказ</strong> <span class="hint">(искл. донат-лорники)</span></div></li>
+  <div class="duo">
+    <div class="panel">
+      <div class="panel-head"><span class="glyph">⚔</span> Одобрение заявок лорников</div>
+      <ul class="steps">
+        <li><span class="idx">01</span><div>Проверить на наличие чёрного списка лорников</div></li>
+        <li><span class="idx">02</span><div>Проверка на наличие чёрного списка проекта</div></li>
+        <li><span class="idx">03</span><div>Стабильный онлайн за последние 15+ дней <span class="note">(только 2-й сервер)</span></div></li>
+        <li><span class="idx">04</span><div>Проверить 2-й пункт (возраст) на соответствие требований</div></li>
+        <li><span class="idx">05</span><div>Проверить 7-й пункт на копипаст и количество содержания</div></li>
+        <li class="deny"><span class="idx">06</span><div>Стоит на лорнике в одной из фракций — <strong>отказ</strong> <span class="note">(искл. донат-лорники)</span></div></li>
       </ul>
     </div>
 
-    <div class="card">
-      <div class="card-title"><span class="ico">👑</span> Одобрение заявок лидеров</div>
-      <ul class="check">
-        <li><span class="n">1</span><div>Проверить на наличие чёрного списка лидеров и лорников</div></li>
-        <li><span class="n">2</span><div>Проверить на наличие чёрного списка проекта</div></li>
-        <li><span class="n">3</span><div>Стабильный онлайн за последние 15+ дней <span class="hint">(только 2-й сервер)</span></div></li>
-        <li><span class="n">4</span><div>Проверить 2-й пункт (возраст) на соответствие требований</div></li>
-        <li><span class="n">5</span><div>Проверить 7-й пункт на копипаст и количество содержания</div></li>
-        <li class="danger"><span class="n">6</span><div>Стоит на лорнике в одной из фракций — <strong>отказ</strong> <span class="hint">(кроме донат-лорников)</span></div></li>
+    <div class="panel">
+      <div class="panel-head"><span class="glyph">♛</span> Одобрение заявок лидеров</div>
+      <ul class="steps">
+        <li><span class="idx">01</span><div>Проверить на наличие чёрного списка лидеров и лорников</div></li>
+        <li><span class="idx">02</span><div>Проверить на наличие чёрного списка проекта</div></li>
+        <li><span class="idx">03</span><div>Стабильный онлайн за последние 15+ дней <span class="note">(только 2-й сервер)</span></div></li>
+        <li><span class="idx">04</span><div>Проверить 2-й пункт (возраст) на соответствие требований</div></li>
+        <li><span class="idx">05</span><div>Проверить 7-й пункт на копипаст и количество содержания</div></li>
+        <li class="deny"><span class="idx">06</span><div>Стоит на лорнике в одной из фракций — <strong>отказ</strong> <span class="note">(кроме донат-лорников)</span></div></li>
       </ul>
     </div>
   </div>
 
-  <div class="sec-head"><span class="sec-num">2</span> Регламент проведения обзвонов</div>
+  <!-- ===== ГЛАВА 2 ===== -->
+  <div class="chapter">
+    <span class="chapter-num">ГЛАВА 02</span>
+    <span class="chapter-title">Регламент проведения обзвонов</span>
+    <span class="chapter-line"></span>
+  </div>
 
-  <details class="acc" open>
-    <summary><span>📜 Общее положение</span><span class="chev">▸</span></summary>
-    <div class="acc-body">
+  <details class="fold" open>
+    <summary><span>Общее положение</span><span class="mark">›</span></summary>
+    <div class="fold-body">
       <p><strong>Обзвон</strong> — мероприятие, устраиваемое РП персоналом с целью отбора кандидата на должность лорного персонажа или лидера фракции.</p>
       <ul>
         <li>Устраивать мероприятие разрешено при прохождении 72 ч. после объявления.</li>
@@ -249,9 +430,9 @@
     </div>
   </details>
 
-  <details class="acc">
-    <summary><span>🧑‍⚖️ Требования со стороны РП персонала</span><span class="chev">▸</span></summary>
-    <div class="acc-body">
+  <details class="fold">
+    <summary><span>Требования со стороны РП персонала</span><span class="mark">›</span></summary>
+    <div class="fold-body">
       <ul>
         <li>Создать войс-канал за 10–5 минут до начала, пингануть игроков в ветке заявок и оповестить о скором начале.</li>
         <li>Вопросы и ключи (по желанию) готовы за 10 минут до обзвона или на самом обзвоне; дедлайн — 10 минут с начала.</li>
@@ -275,9 +456,9 @@
     </div>
   </details>
 
-  <details class="acc">
-    <summary><span>🎯 Требования со стороны кандидатов</span><span class="chev">▸</span></summary>
-    <div class="acc-body">
+  <details class="fold">
+    <summary><span>Требования со стороны кандидатов</span><span class="mark">›</span></summary>
+    <div class="fold-body">
       <ul>
         <li>Явиться в срок. Опоздание более 5 минут без уведомления — РП персонал вправе не допустить к обзвону.</li>
         <li>При задержке/отсутствии — оповестить РП персонал и указать причину. РП персонал ждёт до конца обзвона остальных; после последнего человека — 5 минут.</li>
@@ -296,28 +477,33 @@
     </div>
   </details>
 
-  <div class="sec-head"><span class="sec-num">3</span> РП отдел Yufu.Su</div>
+  <!-- ===== ГЛАВА 3 ===== -->
+  <div class="chapter">
+    <span class="chapter-num">ГЛАВА 03</span>
+    <span class="chapter-title">РП отдел Yufu.Su</span>
+    <span class="chapter-line"></span>
+  </div>
 
-  <details class="acc" open>
-    <summary><span>🏯 Основная информация</span><span class="chev">▸</span></summary>
-    <div class="acc-body">
+  <details class="fold" open>
+    <summary><span>Основная информация</span><span class="mark">›</span></summary>
+    <div class="fold-body">
       <p>РП отдел Yufu.Su отвечает за поддержание и развитие ролевой составляющей сервера. Наша команда обеспечивает качественное ролевое взаимодействие между игроками и следит за соблюдением ролевых стандартов.</p>
       <p>Мы работаем над созданием immersive-опыта для всех участников сервера, развитием лорных линий и интеграцией игроков в игровой мир. Каждый член нашей команды — опытный ролевик и пример для других игроков.</p>
       <p>РП отдел поддерживает баланс между игровой механикой и ролевой составляющей, обеспечивая максимальное погружение игроков в игровой мир.</p>
     </div>
   </details>
 
-  <details class="acc">
-    <summary><span>👥 Обязанности сотрудников</span><span class="chev">▸</span></summary>
-    <div class="acc-body">
-      <h4>РП Куратор</h4>
+  <details class="fold">
+    <summary><span>Обязанности сотрудников</span><span class="mark">›</span></summary>
+    <div class="fold-body">
+      <div class="h5">РП Куратор</div>
       <ul>
         <li>Проведение обзвонов на лорных персонажей</li>
         <li>Следит за РП составляющей сервера и онлайном лорников</li>
         <li>Пресечение нон-РП казусов / первичное одобрение индивидуальных предложений в рамках РП</li>
         <li>Принятие обращений на РП составляющие и нарушающие моменты сервера от игроков</li>
       </ul>
-      <h4>Заместитель РП Куратора</h4>
+      <div class="h5">Заместитель РП Куратора</div>
       <ul>
         <li>Замена РП куратора при определённых обстоятельствах</li>
         <li>Следит за работой лидеров фракции над своей фракцией</li>
@@ -327,63 +513,68 @@
     </div>
   </details>
 
-  <div class="sec-head"><span class="sec-num">4</span> Шаблоны для работы</div>
+  <!-- ===== ГЛАВА 4 ===== -->
+  <div class="chapter">
+    <span class="chapter-num">ГЛАВА 04</span>
+    <span class="chapter-title">Шаблоны для работы</span>
+    <span class="chapter-line"></span>
+  </div>
 
-  <details class="acc" open>
-    <summary><span>📋 Шаблон объявления на лорника</span><span class="chev">▸</span></summary>
-    <div class="acc-body">
-      <p><span class="tag">@demonslayer2</span></p>
-      <p>Объявлен набор на лорного персонажа: <strong>__lore-name__</strong></p>
-      <div class="tpl-grid">
-        <div class="tpl">
-          <div class="tpl-head"><b>Форма заявки</b><span class="tag">9 пунктов</span></div>
+  <details class="fold" open>
+    <summary><span>Шаблон объявления на лорника</span><span class="mark">›</span></summary>
+    <div class="fold-body">
+      <p><span class="note">@demonslayer2</span> · Объявлен набор на лорного персонажа: <strong>__lore-name__</strong></p>
+      <div class="tpl-row">
+        <div class="tpl-card">
+          <h6>Форма заявки <span>9 пунктов</span></h6>
           <ul>
-            <li>｢1｣ Пингуете себя через @</li>
-            <li>｢2｣ Возраст:</li>
-            <li>｢3｣ Коротко о себе.</li>
-            <li>｢4｣ Средний суточный онлайн:</li>
-            <li>｢5｣ Часовой пояс:</li>
-            <li>｢6｣ Почему именно вы должны стать этим лорником?:</li>
-            <li>｢7｣ Расскажите развёрнуто и своими словами о персонаже:</li>
-            <li>｢8｣ Какие у вас были серьёзные нарушения за последние полгода?</li>
-            <li>｢9｣ Ваш SteamID:</li>
+            <li>1. Пингуете себя через @</li>
+            <li>2. Возраст:</li>
+            <li>3. Коротко о себе.</li>
+            <li>4. Средний суточный онлайн:</li>
+            <li>5. Часовой пояс:</li>
+            <li>6. Почему именно вы должны стать этим лорником?:</li>
+            <li>7. Расскажите развёрнуто и своими словами о персонаже:</li>
+            <li>8. Какие у вас были серьёзные нарушения за последние полгода?</li>
+            <li>9. Ваш SteamID:</li>
           </ul>
         </div>
-        <div class="tpl">
-          <div class="tpl-head"><b>Критерии</b><span class="tag">обязательно</span></div>
+        <div class="tpl-card">
+          <h6>Критерии <span>обязательно</span></h6>
           <ul>
-            <li>｢1｣ Возраст 14+ включительно;</li>
-            <li>｢2｣ Отсутствует ЧС лорников;</li>
-            <li>｢3｣ Имеется микрофон;</li>
-            <li>｢4｣ Стабильный онлайн за последние 15+ дней на втором сервере.</li>
+            <li>1. Возраст 14+ включительно;</li>
+            <li>2. Отсутствует ЧС лорников;</li>
+            <li>3. Имеется микрофон;</li>
+            <li>4. Стабильный онлайн за последние 15+ дней на втором сервере.</li>
           </ul>
         </div>
-        <div class="tpl">
-          <div class="tpl-head"><b>Дополнительно</b><span class="tag">важно</span></div>
+        <div class="tpl-card">
+          <h6>Дополнительно <span>важно</span></h6>
           <ul>
-            <li>｢1｣ Вопросы на лорных персонажей с дополнительными историями могут содержать вопросы именно по ним — готовьтесь не только по манге.</li>
-            <li>｢2｣ Запрещено использовать документы с других РП проектов.</li>
-            <li>｢3｣ Историю персонажа писать своими словами.</li>
-            <li>｢4｣ Не иметь заявку на другого лорного персонажа.</li>
-            <li>｢5｣ Несоответствие требованиям — РП состав вправе отклонить без уведомления о причине.</li>
-            <li>｢6｣ Наборный лорник на первом сервере — нужно одобрение Куратора или его замов обоих серверов (1 и 2).</li>
+            <li>1. Вопросы на лорных персонажей с дополнительными историями могут содержать вопросы именно по ним — готовьтесь не только по манге.</li>
+            <li>2. Запрещено использовать документы с других РП проектов.</li>
+            <li>3. Историю персонажа писать своими словами.</li>
+            <li>4. Не иметь заявку на другого лорного персонажа.</li>
+            <li>5. Несоответствие требованиям — РП состав вправе отклонить без уведомления о причине.</li>
+            <li>6. Наборный лорник на первом сервере — нужно одобрение Куратора или его замов обоих серверов (1 и 2).</li>
           </ul>
         </div>
       </div>
     </div>
   </details>
 
-  <div class="warnbox">
-    <strong>⚠️ Важно:</strong> несоблюдение регламента обзвона влечёт исключение из мероприятия, внесение в чёрный список лорников и/или перма-ЧС. Спорные ситуации решает РП куратор или уполномоченный деп.
+  <!-- ===== ВАЖНО ===== -->
+  <div class="caution">
+    <b>⚠ Важно:</b> несоблюдение регламента обзвона влечёт исключение из мероприятия, внесение в чёрный список лорников и/или перма-ЧС. Спорные ситуации решает РП куратор или уполномоченный деп.
   </div>
 
-  <footer class="foot">
+  <!-- ===== ПОДВАЛ ===== -->
+  <footer class="colophon">
     <span>Yufu.Su · RP Department</span>
-    <span>⛩️ Demon Slayer · server 2</span>
-    <span>Регламент обзвона v2.4</span>
+    <span>Demon Slayer · Server 2</span>
+    <span>Регламент v2.4</span>
   </footer>
 
 </div>
 </body>
 </html>
-```
